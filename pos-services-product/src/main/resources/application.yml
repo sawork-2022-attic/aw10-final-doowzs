@@ -10,17 +10,15 @@ spring:
     type: "redis"
   cloud:
     zookeeper:
-      connect-string: "localhost:30001"
+      connect-string: "zookeeper"
   data:
     mongodb:
-      host: "localhost"
-      port: 30004
+      host: "mongo"
       database: "pos"
   datasource:
-    url: "jdbc:mysql://localhost:30003/pos"
+    url: "jdbc:mysql://mysql/pos"
     driver-class-name: "com.mysql.cj.jdbc.Driver"
     username: "root"
   redis:
-    host: "localhost"
-    port: 30005
+    host: "redis"
     database: 0

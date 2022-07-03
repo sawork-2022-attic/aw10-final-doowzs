@@ -42,5 +42,62 @@ services:
     image: "bitnami/redis:6.2"
     environment:
       - "ALLOW_EMPTY_PASSWORD=yes"
+
+  pos_gateway:
+    build:
+      context: "."
+      dockerfile: "pos-gateway.Dockerfile"
     ports:
-      - "30005:6379"
+      - "30080:30080"
+    depends_on:
+      - pos_services_cart
+      - pos_services_product
+      - pos_services_delivery
+      - pos_services_order
+
+  pos_services_cart:
+    build:
+      context: "."
+      dockerfile: "pos-services-cart.Dockerfile"
+    ports:
+      - "30081:30081"
+    depends_on:
+      - mongo
+      - zookeeper
+
+  pos_services_product:
+    build:
+      context: "."
+      dockerfile: "pos-services-product.Dockerfile"
+    ports:
+      - "30082:30082"
+    volumes:
+      - "./pos-services-product/src/main/resources/data:/data:ro"
+    depends_on:
+      - mongo
+      - mysql
+      - redis
+      - zookeeper
+
+  pos_services_order:
+    build:
+      context: "."
+      dockerfile: "pos-services-order.Dockerfile"
+    ports:
+      - "30083:30083"
+    depends_on:
+      - kafka
+      - mongo
+      - zookeeper
+
+  pos_services_delivery:
+    build:
+      context: "."
+      dockerfile: "pos-services-delivery.Dockerfile"
+    ports:
+      - "30084:30084"
+    depends_on:
+      - kafka
+      - mongo
+      - zookeeper
+

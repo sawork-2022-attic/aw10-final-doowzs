@@ -11,12 +11,11 @@ spring:
       kafka:
         binder:
           brokers:
-            - "PLAINTEXT://localhost:30002"
+            - "PLAINTEXT://kafka:30002"
           auto-create-topics: true
     zookeeper:
-      connect-string: "localhost:30001"
+      connect-string: "zookeeper"
   data:
     mongodb:
-      host: "localhost"
-      port: 30004
+      host: "mongo"
       database: "pos"

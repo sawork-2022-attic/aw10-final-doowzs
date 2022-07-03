@@ -6,3 +6,9 @@ include "pos-services-cart"
 include "pos-services-delivery"
 include "pos-services-order"
 include "pos-services-product"
+
+buildscript {
+    repositories {
+        maven { url 'https://repo.nju.edu.cn/repository/maven-public/' }
+    }
+}

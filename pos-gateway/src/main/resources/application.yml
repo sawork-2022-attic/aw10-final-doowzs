@@ -40,4 +40,4 @@ spring:
               - POST
               - DELETE
     zookeeper:
-      connect-string: "localhost:30001"
+      connect-string: "zookeeper"

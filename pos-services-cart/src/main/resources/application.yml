@@ -5,9 +5,8 @@ spring:
     name: "cart-service"
   cloud:
     zookeeper:
-      connect-string: "localhost:30001"
+      connect-string: "zookeeper"
   data:
     mongodb:
-      host: "localhost"
-      port: 30004
+      host: "mongo"
       database: "pos"
