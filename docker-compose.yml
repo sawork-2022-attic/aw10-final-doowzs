@@ -1,0 +1,46 @@
+version: "3"
+
+services:
+  zookeeper:
+    image: "bitnami/zookeeper:3.8"
+    environment:
+      - "ZOO_SERVER_ID=1"
+      - "ALLOW_ANONYMOUS_LOGIN=yes"
+    ports:
+      - "30001:2181"
+
+  kafka:
+    image: "bitnami/kafka:3.1"
+    environment:
+      - "ALLOW_PLAINTEXT_LISTENER=yes"
+      - "KAFKA_CFG_AUTO_CREATE_TOPICS_ENABLE=true"
+      - "KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181"
+      - "KAFKA_CFG_LISTENER_SECURITY_PROTOCOL_MAP=CLIENT:PLAINTEXT,EXTERNAL:PLAINTEXT"
+      - "KAFKA_CFG_LISTENERS=CLIENT://:9092,EXTERNAL://:30002"
+      - "KAFKA_CFG_ADVERTISED_LISTENERS=CLIENT://kafka:9092,EXTERNAL://localhost:30002"
+      - "KAFKA_CFG_INTER_BROKER_LISTENER_NAME=CLIENT"
+    ports:
+      - "30002:30002"
+
+  mysql:
+    image: "bitnami/mysql:8.0"
+    environment:
+      - "ALLOW_EMPTY_PASSWORD=yes"
+    volumes:
+      - "./initdb.sql:/docker-entrypoint-initdb.d/initdb.sql"
+    ports:
+      - "30003:3306"
+
+  mongo:
+    image: "bitnami/mongodb:5.0"
+    environment:
+      - "ALLOW_EMPTY_PASSWORD=yes"
+    ports:
+      - "30004:27017"
+
+  redis:
+    image: "bitnami/redis:6.2"
+    environment:
+      - "ALLOW_EMPTY_PASSWORD=yes"
+    ports:
+      - "30005:6379"

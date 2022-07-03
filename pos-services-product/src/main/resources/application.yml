@@ -1,0 +1,26 @@
+server:
+  port: 30082
+spring:
+  application:
+    name: "product-service"
+  batch:
+    jdbc:
+      initialize-schema: "always"
+  cache:
+    type: "redis"
+  cloud:
+    zookeeper:
+      connect-string: "localhost:30001"
+  data:
+    mongodb:
+      host: "localhost"
+      port: 30004
+      database: "pos"
+  datasource:
+    url: "jdbc:mysql://localhost:30003/pos"
+    driver-class-name: "com.mysql.cj.jdbc.Driver"
+    username: "root"
+  redis:
+    host: "localhost"
+    port: 30005
+    database: 0

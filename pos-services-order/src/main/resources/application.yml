@@ -1,0 +1,22 @@
+server:
+  port: 30083
+spring:
+  application:
+    name: "order-service"
+  cloud:
+    stream:
+      bindings:
+        createOrder-out-0:
+          destination: "newOrders"
+      kafka:
+        binder:
+          brokers:
+            - "PLAINTEXT://localhost:30002"
+          auto-create-topics: true
+    zookeeper:
+      connect-string: "localhost:30001"
+  data:
+    mongodb:
+      host: "localhost"
+      port: 30004
+      database: "pos"

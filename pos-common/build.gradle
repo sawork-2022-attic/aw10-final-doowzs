@@ -1,0 +1,19 @@
+plugins {
+    id "org.springframework.boot" version "2.6.7"
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+    id "io.freefair.lombok" version "6.4.3"
+    id "java"
+}
+
+group = "edu.nju.sa2022.micropos"
+version = "0.0.1-SNAPSHOT"
+sourceCompatibility = "11"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation "org.springframework:spring-webflux"
+    implementation "org.springframework.data:spring-data-mongodb"
+}

@@ -1,0 +1,89 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Delivery
+  license:
+    name: MIT
+paths:
+  /deliveries:
+    get:
+      summary: List deliveries
+      operationId: listDeliveriesByOrderId
+      tags:
+        - Deliveries
+      parameters:
+        - name: orderId
+          in: query
+          required: true
+          description: The id of the order to query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Deliveries"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /deliveries/{deliveryId}:
+    get:
+      summary: Get Delivery
+      operationId: findDelivery
+      tags:
+        - Deliveries
+      parameters:
+        - name: deliveryId
+          in: path
+          required: true
+          description: The id of the delivery to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Delivery"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Delivery:
+      type: object
+      required:
+        - id
+        - orderId
+        - delivered
+      properties:
+        id:
+          type: string
+        orderId:
+          type: string
+        delivered:
+          type: boolean
+    Deliveries:
+      type: array
+      items:
+        $ref: "#/components/schemas/Delivery"
+    Error:
+      type: object
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string

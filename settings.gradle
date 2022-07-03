@@ -1,0 +1,8 @@
+rootProject.name = "micropos"
+
+include "pos-common"
+include "pos-gateway"
+include "pos-services-cart"
+include "pos-services-delivery"
+include "pos-services-order"
+include "pos-services-product"
