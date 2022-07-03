@@ -35,7 +35,7 @@ public class ProductConfiguration {
         MultiResourceItemReaderBuilder<JsonNode> builder = new MultiResourceItemReaderBuilder<>();
         return builder.name("problemReader")
                 .saveState(false)
-                .resources(resolver.getResources("classpath:data/x**"))
+                .resources(resolver.getResources("file:/data/x**"))
                 .delegate(new JsonFileReader())
                 .build();
     }
