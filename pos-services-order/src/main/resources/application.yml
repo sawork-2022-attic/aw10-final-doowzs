@@ -10,8 +10,7 @@ spring:
           destination: "newOrders"
       kafka:
         binder:
-          brokers:
-            - "PLAINTEXT://kafka:30002"
+          brokers: "kafka"
           auto-create-topics: true
     zookeeper:
       connect-string: "zookeeper"

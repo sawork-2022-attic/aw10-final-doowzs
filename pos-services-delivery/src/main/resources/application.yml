@@ -11,7 +11,7 @@ spring:
       kafka:
         binder:
           brokers:
-            - "PLAINTEXT://kafka:30002"
+            - "kafka"
           auto-create-topics: true
     zookeeper:
       connect-string: "zookeeper"
